@@ -1,0 +1,21 @@
+.searchBarContainer {
+  display: flex;
+  width: 100vw;
+  height: 50px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  justify-content: center;
+}
+.searchBar {
+  width: 60%;
+  border-radius: 100px;
+  padding: 10px;
+  border: 2px solid black;
+  font-size: 100%;
+}
+
+.searchBarIcon {
+  transform: scale(0.7);
+  position: absolute;
+  margin-right: -57%;
+}
