@@ -1,10 +1,10 @@
-Step 1:\n
-npm i to install the dependencies\n
-Step 2: \n
-create google map API key from https://console.cloud.google.com/apis/credentials/key\n
-allows callback urls from your computer\n
-Step 3:\n
-npm run dev to start the app\n
+**Step 1:**<br />
+npm i to install the dependencies<br /> <br /><br />
+**Step 2:** <br />
+create google map API key from https://console.cloud.google.com/apis/credentials/key <br />
+allows callback urls from your computer <br /> <br /><br />
+**Step 3:** <br />
+npm run dev to start the app <br /> <br /><br /><br /><br />
 
 # Getting Started with Create React App
 
