@@ -1,0 +1,39 @@
+.dropdownTestAPI {
+  display: inline-block;
+  margin-top: -20px;
+}
+.dropBoxTestAPI {
+  margin-left: 10px;
+}
+.dropdownContentTestAPI {
+  margin-left: 10px;
+  display: none;
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  overflow: auto;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+.dropdownTestAPI:hover .dropdownContentTestAPI {
+  display: block;
+}
+.dropdownContentTestAPI a {
+  display: block;
+  color: #000000;
+  padding: 5px;
+  text-decoration: none;
+}
+.dropdownContentTestAPI a:hover {
+  opacity: 0.7;
+}
+.buttonAPIPredict {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+  margin-top: 40px;
+}
+.buttonAPIPredict:hover {
+  opacity: 0.5;
+}

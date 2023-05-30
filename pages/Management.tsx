@@ -4,23 +4,33 @@ import Nav from "../components/Nav";
 import ModalBox from "../components/ModalBox";
 import SearchBar from "../components/SearchBar";
 import DropDownMenu from "../components/DropDownMenu";
+import LocationList from "../components/LocationList";
 
 export default function Management() {
   const modalRef = useRef();
-
+  const searchRef = useRef();
+  const mapRef = useRef();
   return (
     <div>
-      <SearchBar />
+      <SearchBar
+        ref={searchRef}
+        onClick={() => {
+          mapRef.current.setMapCenter(
+            JSON.parse("[" + searchRef.current.returnInputValue() + "]")
+          );
+        }}
+      />
       <DropDownMenu />
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "flex-start",
           alignItems: "center",
           width: "100%",
           padding: "30px",
         }}
       >
+        <LocationList />
         <Map
           onClick={async () => {
             const res = await fetch("http://202.191.58.206/pamair/hourly", {
@@ -32,9 +42,14 @@ export default function Management() {
               }),
             });
             const data = res.json();
-            console.log(data);
+            console.log(
+              data.then(function (result) {
+                return result.aqi_us[0];
+              })
+            );
             modalRef.current.displayOnClick();
           }}
+          ref={mapRef}
         />
       </div>
       <ModalBox ref={modalRef} />

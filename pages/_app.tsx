@@ -5,13 +5,13 @@ import "../public/style/App.css";
 import ModalBox from "../components/ModalBox";
 import SearchBar from "../components/SearchBar";
 import DropDownMenu from "../components/DropDownMenu";
-import Management from "./Management.tsx";
+import Management from "./Management";
 import TestAPI from "./TestAPI";
 function App() {
   const [pageRoute, setPageRoute] = useState("Management");
   return (
     <div className="App">
-      <div>
+      <div style={{ height: "100%" }}>
         <Nav
           onClick={(e) => {
             if (e.target.id === "TestAPI") {
