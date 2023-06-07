@@ -8,6 +8,9 @@ function SearchBar(props: { onClick: () => void }, ref) {
       returnInputValue: () => {
         return inputRef.current.value;
       },
+      modifyInputValue: (e) => {
+        inputRef.current.value = e;
+      },
     };
   });
   return (

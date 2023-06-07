@@ -10,27 +10,12 @@ const containerStyle = {
   width: "800px",
   height: "500px",
 };
-
-// const options = {
-//   strokeColor: "#FF0000",
-//   strokeOpacity: 0.8,
-//   strokeWeight: 2,
-//   fillColor: "#00FF00",
-//   fillOpacity: 0.35,
-//   clickable: true,
-//   draggable: false,
-//   editable: false,
-//   visible: true,
-//   radius: 200,
-//   zIndex: 1,
-// };
-
-// When the user clicks anywhere outside of the modal, close it
+import { HaNoiLocationList } from "./HaNoiLocationList";
 
 function Map(props: { onClick: () => void }, ref) {
   const [center, setCenter] = useState({
-    lat: -3.745,
-    lng: -38.523,
+    lat: 105.78,
+    lng: 21.08,
   });
   useImperativeHandle(ref, () => {
     return {
@@ -66,12 +51,30 @@ function Map(props: { onClick: () => void }, ref) {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={4}
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
         {/* Child components, such as markers, info windows, etc. */}
-        <></>
+        <>
+          {HaNoiLocationList.map((items, index) => {
+            return (
+              <Marker
+                // required
+                key={index}
+                onClick={() => {
+                  alert(items[1] + "," + items[2]);
+                  props.onClick;
+                }}
+                position={{
+                  lat: items[3],
+                  lng: items[4],
+                }}
+                // required
+              />
+            );
+          })}
+        </>
         <Marker
           // required
           onClick={props.onClick}

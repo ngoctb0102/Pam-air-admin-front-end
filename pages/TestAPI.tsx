@@ -7,12 +7,14 @@ import DropDownMenu from "../components/DropDownMenu";
 import styleTestAPI from "../public/style/TestAPI.module.css";
 import { HaNoiDistrict } from "../lib/HaNoiDistrict";
 import { HoChiMinhDistrict } from "../lib/HoChiMinhDistrict";
+import ReactLoading from "react-loading";
 
 export default function TestAPI() {
   let [cityState, setCityState] = useState("");
   let [districtState, setDistrictState] = useState("");
   let [modelState, setModelState] = useState("");
   let [cardClickCheck, setCardClickCheck] = useState(1);
+  let [loadingState, setLoadingState] = useState("loading");
   let [dataAPI, setDataAPI] = useState({
     aqi_us: [],
     aqi_vn: [],
@@ -55,13 +57,32 @@ export default function TestAPI() {
       });
       console.log(dataAPI);
     }
+    setLoadingState("finish");
   };
-  const predictCard = (time, pm25, pollutionLevel, VNAQILevel, USAQILevel) => {
+  const predictCard = (time, pm25, VNAQILevel, USAQILevel) => {
     let color = "";
-    if (pollutionLevel === "moderate") {
-      color = "yellow";
+    let pollutionLevel = "";
+    if (parseFloat(VNAQILevel) >= 0 && parseFloat(VNAQILevel) <= 50) {
+      pollutionLevel = "Good";
+    } else if (parseFloat(VNAQILevel) <= 100) {
+      pollutionLevel = "Moderate";
+    } else if (parseFloat(VNAQILevel) <= 200) {
+      pollutionLevel = "Bad";
+    } else if (parseFloat(VNAQILevel) <= 300) {
+      pollutionLevel = "Harmful";
     } else {
+      pollutionLevel = "Unsafe";
+    }
+    if (pollutionLevel === "Good") {
+      color = "blue";
+    } else if (pollutionLevel === "Moderate") {
+      color = "yellow";
+    } else if (pollutionLevel === "Bad") {
       color = "orange";
+    } else if (pollutionLevel === "Harmful") {
+      color = "red";
+    } else if (pollutionLevel === "Unsafe") {
+      color = "maroon";
     }
     return (
       <div style={{ display: "flex", marginBottom: "20px" }}>
@@ -80,11 +101,17 @@ export default function TestAPI() {
           <h5 style={{ marginRight: "20px" }}>{pollutionLevel}</h5>
           <div>
             <h5 style={{ marginRight: "20px", marginBottom: "0" }}>pm2.5</h5>
-            <h5 style={{ marginRight: "20px", marginTop: "0" }}>{pm25}</h5>
+            <h5 style={{ marginRight: "20px", marginTop: "0" }}>
+              {parseFloat(pm25).toFixed(2)}
+            </h5>
           </div>
           <div style={{ display: "flex" }}>
-            <h5 style={{ marginRight: "20px" }}>{VNAQILevel}</h5>
-            <h5 style={{ marginRight: "20px" }}>{USAQILevel}</h5>
+            <h5 style={{ marginRight: "20px" }}>
+              {parseFloat(VNAQILevel).toFixed(2) + " VN AQI"}
+            </h5>
+            <h5 style={{ marginRight: "20px" }}>
+              {parseFloat(USAQILevel).toFixed(2) + " US AQI"}
+            </h5>
             <div>someIcon</div>
           </div>
         </div>
@@ -171,6 +198,7 @@ export default function TestAPI() {
         <button
           className={styleTestAPI.buttonAPIPredict}
           onClick={() => {
+            setLoadingState("loading");
             if (cardClickCheck === 1) {
               setCardClickCheck(0);
             } else if (cardClickCheck === 0) {
@@ -225,17 +253,46 @@ export default function TestAPI() {
               height: "400px",
               padding: "10px",
               overflowY: "auto",
+              overflowX: "hidden",
+              display: "flex",
+              justifyContent: "center",
             }}
+            className={styleTestAPI.TestAPICardContainer}
           >
-            {dataAPI.time.map((item, index) => {
-              return predictCard(
-                dataAPI.time[index],
-                dataAPI["pm2.5"][index],
-                "moderate",
-                dataAPI.aqi_vn[index] + " VN AQI",
-                dataAPI.aqi_us[index] + " US AQI"
-              );
-            })}
+            {loadingState === "loading" ? (
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <ReactLoading type="balls" color="#000" />
+                  </div>
+                  <h3>waiting to fetch goods</h3>
+                </div>
+              </div>
+            ) : (
+              <div>
+                {dataAPI.time.map((item, index) => {
+                  return predictCard(
+                    dataAPI.time[index],
+                    dataAPI["pm2.5"][index],
+
+                    dataAPI.aqi_vn[index] + " VN AQI",
+                    dataAPI.aqi_us[index] + " US AQI"
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>

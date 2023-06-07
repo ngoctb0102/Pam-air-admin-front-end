@@ -6,20 +6,25 @@
   margin-left: 10px;
 }
 .dropdownContentTestAPI {
+  background-color: black;
+  color: white;
   margin-left: 10px;
   display: none;
   position: absolute;
   width: 150px;
-  height: 60px;
+  max-height: 200px;
   overflow: auto;
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+.dropdownContentTestAPI::-webkit-scrollbar {
+  display: none;
 }
 .dropdownTestAPI:hover .dropdownContentTestAPI {
   display: block;
 }
 .dropdownContentTestAPI a {
   display: block;
-  color: #000000;
+  color: white;
   padding: 5px;
   text-decoration: none;
 }
@@ -36,4 +41,7 @@
 }
 .buttonAPIPredict:hover {
   opacity: 0.5;
+}
+.TestAPICardContainer::-webkit-scrollbar {
+  display: none;
 }

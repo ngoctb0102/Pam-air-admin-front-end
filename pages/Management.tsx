@@ -1,4 +1,4 @@
-import { useState, useCallback, memo, useRef } from "react";
+import { useState, useCallback, memo, useRef, useEffect } from "react";
 import Map from "../lib/Map";
 import Nav from "../components/Nav";
 import ModalBox from "../components/ModalBox";
@@ -10,6 +10,16 @@ export default function Management() {
   const modalRef = useRef();
   const searchRef = useRef();
   const mapRef = useRef();
+  const locationListRef = useRef();
+  const [inputState, setInputState] = useState("");
+  useEffect(() => {
+    searchRef.current.modifyInputValue(inputState);
+    mapRef.current.setMapCenter(
+      JSON.parse("[" + searchRef.current.returnInputValue() + "]")
+    );
+    console.log(inputState);
+  }, [inputState]);
+
   return (
     <div>
       <SearchBar
@@ -30,7 +40,11 @@ export default function Management() {
           padding: "30px",
         }}
       >
-        <LocationList />
+        <LocationList
+          onClick={async (e) => {
+            await setInputState(e.currentTarget.className);
+          }}
+        />
         <Map
           onClick={async () => {
             const res = await fetch("http://202.191.58.206/pamair/hourly", {
