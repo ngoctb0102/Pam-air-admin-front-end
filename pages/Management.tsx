@@ -13,11 +13,13 @@ export default function Management() {
   const locationListRef = useRef();
   const [inputState, setInputState] = useState("");
   useEffect(() => {
-    searchRef.current.modifyInputValue(inputState);
-    mapRef.current.setMapCenter(
-      JSON.parse("[" + searchRef.current.returnInputValue() + "]")
-    );
-    console.log(inputState);
+    if (inputState != "") {
+      searchRef.current.modifyInputValue(inputState);
+      mapRef.current.setMapCenter(
+        JSON.parse("[" + searchRef.current.returnInputValue() + "]")
+      );
+      console.log(searchRef.current.returnInputValue());
+    }
   }, [inputState]);
 
   return (

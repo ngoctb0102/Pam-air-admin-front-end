@@ -8,6 +8,8 @@ import {
 } from "react";
 import LocationListStyle from "../public/style/LocationList.module.css";
 import { HaNoiLocationList } from "../lib/HaNoiLocationList";
+import { HoChiMinhLocationList } from "../lib/HoChiMinhLocationList";
+
 import { type } from "@testing-library/user-event/dist/type";
 function LocationList(props: { onClick: (e) => void }, ref) {
   const addingCardRef = useRef();
@@ -27,70 +29,143 @@ function LocationList(props: { onClick: (e) => void }, ref) {
     }
   };
   const LocationCard = (index, item0, item1, item2, item3, item4) => {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          border: "2px solid black",
-          borderRadius: "5px",
-          padding: "0px",
-        }}
-        key={item3}
-        className={item3 + "," + item4}
-        onClick={props.onClick}
-      >
-        <h4
+    return typeof index === "number" &&
+      typeof item0 === "string" &&
+      typeof item1 === "string" &&
+      typeof item2 === "string" &&
+      typeof item3 === "number" &&
+      typeof item4 === "number" ? (
+      <div>
+        <div
           style={{
-            height: "72px",
-            width: "70px",
+            display: "flex",
+            justifyContent: "flex-start",
             border: "2px solid black",
-            margin: "0px",
-            cursor: "pointer",
+            borderRadius: "5px",
+            padding: "0px",
           }}
+          key={item3}
+          className={item3 + "," + item4}
+          onClick={props.onClick}
         >
-          {item0}
-        </h4>
-        <h4
+          <h4
+            style={{
+              height: "72px",
+              width: "70px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {item0}
+          </h4>
+          <h4
+            style={{
+              height: "72px",
+              width: "150px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {item1}
+          </h4>
+          <h4
+            style={{
+              height: "72px",
+              width: "150px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {item2}
+          </h4>
+          <h4
+            style={{
+              height: "72px",
+              width: "150px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {typeof item3 === "number" && typeof item4 === "number" ? (
+              item3.toFixed(2) + "," + item4.toFixed(2)
+            ) : (
+              <div>
+                <div>{item3}</div>
+                <div>{item4}</div>
+              </div>
+            )}
+          </h4>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <div
           style={{
-            height: "72px",
-            width: "150px",
+            display: "flex",
+            justifyContent: "flex-start",
             border: "2px solid black",
-            margin: "0px",
-            cursor: "pointer",
+            borderRadius: "5px",
+            padding: "0px",
           }}
+          key={item3}
+          className={item3 + "," + item4}
         >
-          {item1}
-        </h4>
-        <h4
-          style={{
-            height: "72px",
-            width: "150px",
-            border: "2px solid black",
-            margin: "0px",
-            cursor: "pointer",
-          }}
-        >
-          {item2}
-        </h4>
-        <h4
-          style={{
-            height: "72px",
-            width: "150px",
-            border: "2px solid black",
-            margin: "0px",
-            cursor: "pointer",
-          }}
-        >
-          {typeof item3 === "number" && typeof item4 === "number" ? (
-            item3.toFixed(2) + "," + item4.toFixed(2)
-          ) : (
-            <div>
-              <div>{item3}</div>
-              <div>{item4}</div>
-            </div>
-          )}
-        </h4>
+          <h4
+            style={{
+              height: "72px",
+              width: "70px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {item0}
+          </h4>
+          <h4
+            style={{
+              height: "72px",
+              width: "150px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {item1}
+          </h4>
+          <h4
+            style={{
+              height: "72px",
+              width: "150px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {item2}
+          </h4>
+          <h4
+            style={{
+              height: "72px",
+              width: "150px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {typeof item3 === "number" && typeof item4 === "number" ? (
+              item3.toFixed(2) + "," + item4.toFixed(2)
+            ) : (
+              <div>
+                <div>{item3}</div>
+                <div>{item4}</div>
+              </div>
+            )}
+          </h4>
+        </div>
       </div>
     );
   };
@@ -114,11 +189,9 @@ function LocationList(props: { onClick: (e) => void }, ref) {
       >
         <h2>{ListState}</h2>
       </div>
-      {ListState === "Ha Noi" ? (
-        ListLocationCard(HaNoiLocationList)
-      ) : (
-        <div></div>
-      )}
+      {ListState === "Ha Noi"
+        ? ListLocationCard(HaNoiLocationList)
+        : ListLocationCard(HoChiMinhLocationList)}
       <div style={{ display: "none" }} ref={addingCardRef}>
         {LocationCard(
           1,
@@ -174,15 +247,27 @@ function LocationList(props: { onClick: (e) => void }, ref) {
                 lngRef.current.value
               ) {
                 addingCardRef.current.style.display = "none";
-                setCardListState(
-                  HaNoiLocationList.push([
-                    Number(numberRef.current.value),
-                    nameRef.current.value,
-                    districtRef.current.value,
-                    Number(latRef.current.value),
-                    Number(lngRef.current.value),
-                  ])
-                );
+                if (ListState === "Ha Noi") {
+                  setCardListState(
+                    HaNoiLocationList.push([
+                      parseFloat(numberRef.current.value),
+                      nameRef.current.value,
+                      districtRef.current.value,
+                      parseFloat(latRef.current.value),
+                      parseFloat(lngRef.current.value),
+                    ])
+                  );
+                } else {
+                  setCardListState(
+                    HoChiMinhLocationList.push([
+                      parseFloat(numberRef.current.value),
+                      nameRef.current.value,
+                      districtRef.current.value,
+                      parseFloat(latRef.current.value),
+                      parseFloat(lngRef.current.value),
+                    ])
+                  );
+                }
               } else {
                 alert("please prompt all the field");
               }

@@ -11,6 +11,7 @@ const containerStyle = {
   height: "500px",
 };
 import { HaNoiLocationList } from "./HaNoiLocationList";
+import { HoChiMinhLocationList } from "./HoChiMinhLocationList";
 
 function Map(props: { onClick: () => void }, ref) {
   const [center, setCenter] = useState({
@@ -58,6 +59,25 @@ function Map(props: { onClick: () => void }, ref) {
         {/* Child components, such as markers, info windows, etc. */}
         <>
           {HaNoiLocationList.map((items, index) => {
+            return (
+              <Marker
+                // required
+                key={index}
+                onClick={() => {
+                  alert(items[1] + "," + items[2]);
+                  props.onClick;
+                }}
+                position={{
+                  lat: items[3],
+                  lng: items[4],
+                }}
+                // required
+              />
+            );
+          })}
+        </>
+        <>
+          {HoChiMinhLocationList.map((items, index) => {
             return (
               <Marker
                 // required
