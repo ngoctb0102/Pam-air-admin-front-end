@@ -12,14 +12,15 @@ import { HoChiMinhLocationList } from "../lib/HoChiMinhLocationList";
 
 import { type } from "@testing-library/user-event/dist/type";
 function LocationList(props: { onClick: (e) => void }, ref) {
-  const addingCardRef = useRef();
+  const addingCardRef = useRef<HTMLInputElement>();
   const [ListState, setListState] = useState("Ha Noi");
-  const [cardListState, setCardListState] = useState(HaNoiLocationList);
-  const numberRef = useRef();
-  const nameRef = useRef();
-  const districtRef = useRef();
-  const latRef = useRef();
-  const lngRef = useRef();
+  const [cardListState, setCardListState] =
+    useState<Array<any>>(HaNoiLocationList);
+  const numberRef = useRef<HTMLInputElement>();
+  const nameRef = useRef<HTMLInputElement>();
+  const districtRef = useRef<HTMLInputElement>();
+  const latRef = useRef<HTMLInputElement>();
+  const lngRef = useRef<HTMLInputElement>();
 
   const checkListState = () => {
     if (ListState === "Ha Noi") {
@@ -247,26 +248,20 @@ function LocationList(props: { onClick: (e) => void }, ref) {
                 lngRef.current.value
               ) {
                 addingCardRef.current.style.display = "none";
+                let pushingVal: Array<any> = [
+                  parseFloat(numberRef.current.value),
+                  nameRef.current.value,
+                  districtRef.current.value,
+                  parseFloat(latRef.current.value),
+                  parseFloat(lngRef.current.value),
+                ];
+
                 if (ListState === "Ha Noi") {
-                  setCardListState(
-                    HaNoiLocationList.push([
-                      parseFloat(numberRef.current.value),
-                      nameRef.current.value,
-                      districtRef.current.value,
-                      parseFloat(latRef.current.value),
-                      parseFloat(lngRef.current.value),
-                    ])
-                  );
+                  HaNoiLocationList.push(pushingVal);
+                  setCardListState(HaNoiLocationList);
                 } else {
-                  setCardListState(
-                    HoChiMinhLocationList.push([
-                      parseFloat(numberRef.current.value),
-                      nameRef.current.value,
-                      districtRef.current.value,
-                      parseFloat(latRef.current.value),
-                      parseFloat(lngRef.current.value),
-                    ])
-                  );
+                  HoChiMinhLocationList.push(pushingVal);
+                  setCardListState(HoChiMinhLocationList);
                 }
               } else {
                 alert("please prompt all the field");

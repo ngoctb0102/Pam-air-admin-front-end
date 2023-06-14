@@ -1,16 +1,15 @@
 import { useState, useCallback, memo, useRef, useEffect } from "react";
-import Map from "../lib/Map";
+import Map, { MapHandle } from "../lib/Map";
 import Nav from "../components/Nav";
-import ModalBox from "../components/ModalBox";
-import SearchBar from "../components/SearchBar";
+import ModalBox, { ModalHandle } from "../components/ModalBox";
+import SearchBar, { SearchHandle } from "../components/SearchBar";
 import DropDownMenu from "../components/DropDownMenu";
 import LocationList from "../components/LocationList";
 
 export default function Management() {
-  const modalRef = useRef();
-  const searchRef = useRef();
-  const mapRef = useRef();
-  const locationListRef = useRef();
+  const modalRef = useRef<ModalHandle>();
+  const searchRef = useRef<SearchHandle>();
+  const mapRef = useRef<MapHandle>();
   const [inputState, setInputState] = useState("");
   useEffect(() => {
     if (inputState != "") {
@@ -49,20 +48,20 @@ export default function Management() {
         />
         <Map
           onClick={async () => {
-            const res = await fetch("http://202.191.58.206/pamair/hourly", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                city: "Ha Noi",
-                district: "Quan Hoan Kiem",
-              }),
-            });
-            const data = res.json();
-            console.log(
-              data.then(function (result) {
-                return result.aqi_us[0];
-              })
-            );
+            // const res = await fetch("http://202.191.58.206/pamair/hourly", {
+            //   method: "POST",
+            //   headers: { "Content-Type": "application/json" },
+            //   body: JSON.stringify({
+            //     city: "Ha Noi",
+            //     district: "Quan Hoan Kiem",
+            //   }),
+            // });
+            // const data = res.json();
+            // console.log(
+            //   data.then(function (result) {
+            //     return result.aqi_us[0];
+            //   })
+            // );
             modalRef.current.displayOnClick();
           }}
           ref={mapRef}

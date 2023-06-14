@@ -1,9 +1,18 @@
 import SearchBarStyle from "../public/style/SearchBar.module.css";
 import searchIcon from "../img/searchIcon.png";
 import React, { useRef, useImperativeHandle } from "react";
-function SearchBar(props: { onClick: () => void }, ref) {
-  const inputRef = useRef();
-  useImperativeHandle(ref, () => {
+type SearchProps = { onClick: () => void };
+
+export type SearchHandle = {
+  returnInputValue: () => string;
+  modifyInputValue: (e: any) => void;
+};
+const SearchBar: React.ForwardRefRenderFunction<SearchHandle, SearchProps> = (
+  props: SearchProps,
+  forwardedRef
+) => {
+  const inputRef = useRef<HTMLInputElement>();
+  useImperativeHandle(forwardedRef, () => {
     return {
       returnInputValue: () => {
         return inputRef.current.value;
@@ -29,6 +38,6 @@ function SearchBar(props: { onClick: () => void }, ref) {
       ></img>
     </div>
   );
-}
+};
 
 export default React.forwardRef(SearchBar);

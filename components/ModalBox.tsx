@@ -1,5 +1,10 @@
 import styleModal from "../public/style/modal.module.css";
 import React, { useRef, useImperativeHandle } from "react";
+type ModalProps = {};
+
+export type ModalHandle = {
+  displayOnClick: () => void;
+};
 const selectModelMenu: any = () => {
   return (
     <div className={styleModal.dropdownModelMenu}>
@@ -18,32 +23,68 @@ const table = () => {
   return (
     <table className={styleModal.table}>
       <tr>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Country</th>
-        <th>Country</th>
+        <th></th>
+        <th>Pm2.5</th>
+        <th>Hum</th>
+        <th>Temp</th>
       </tr>
       <tr>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-        <td>Germany</td>
+        <td>Mean</td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
-        <td>Centro comercial Moctezuma</td>
-        <td>Francisco Chang</td>
-        <td>Mexico</td>
-        <td>Germany</td>
+        <td>Max</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Min</td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     </table>
   );
 };
-function ModalBox(props, ref) {
-  const modal = useRef();
+const table2 = () => {
+  return (
+    <table className={styleModal.table}>
+      <tr>
+        <th></th>
+        <th>R2</th>
+        <th>Mdape</th>
+        <th>Slope</th>
+        <th>Offset</th>
+      </tr>
+      <tr>
+        <td>1h</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2h</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  );
+};
+const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
+  props,
+  forwardedRef
+) => {
+  const modal = useRef<HTMLInputElement>();
   const closeOnClick = (e) => {
     modal.current.style.display = "none";
   };
-  useImperativeHandle(ref, () => {
+  useImperativeHandle(forwardedRef, () => {
     return { displayOnClick: () => (modal.current.style.display = "block") };
   });
   return (
@@ -65,7 +106,7 @@ function ModalBox(props, ref) {
                   <p>Model</p>
                   {selectModelMenu()}
                 </div>
-                {table()}
+                {table2()}
               </div>
               <p>Last updated:</p>
               <div style={{ display: "flex", justifyContent: "center" }}>
@@ -89,6 +130,6 @@ function ModalBox(props, ref) {
       </div>
     </div>
   );
-}
+};
 
 export default React.forwardRef(ModalBox);

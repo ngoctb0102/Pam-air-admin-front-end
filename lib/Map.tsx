@@ -5,20 +5,28 @@ import {
   Circle,
   Marker,
 } from "@react-google-maps/api";
-
+import { HaNoiLocationList } from "./HaNoiLocationList";
+import { HoChiMinhLocationList } from "./HoChiMinhLocationList";
 const containerStyle = {
   width: "800px",
   height: "500px",
 };
-import { HaNoiLocationList } from "./HaNoiLocationList";
-import { HoChiMinhLocationList } from "./HoChiMinhLocationList";
+type MapProps = {
+  onClick: () => void;
+};
 
-function Map(props: { onClick: () => void }, ref) {
+export type MapHandle = {
+  setMapCenter: (a) => void;
+};
+const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
+  props: MapProps,
+  forwardedRef
+) => {
   const [center, setCenter] = useState({
     lat: 105.78,
     lng: 21.08,
   });
-  useImperativeHandle(ref, () => {
+  useImperativeHandle(forwardedRef, () => {
     return {
       setMapCenter: (a) => {
         setCenter({
@@ -64,8 +72,7 @@ function Map(props: { onClick: () => void }, ref) {
                 // required
                 key={index}
                 onClick={() => {
-                  alert(items[1] + "," + items[2]);
-                  props.onClick;
+                  props.onClick();
                 }}
                 position={{
                   lat: items[3],
@@ -83,8 +90,7 @@ function Map(props: { onClick: () => void }, ref) {
                 // required
                 key={index}
                 onClick={() => {
-                  alert(items[1] + "," + items[2]);
-                  props.onClick;
+                  props.onClick();
                 }}
                 position={{
                   lat: items[3],
@@ -95,17 +101,11 @@ function Map(props: { onClick: () => void }, ref) {
             );
           })}
         </>
-        <Marker
-          // required
-          onClick={props.onClick}
-          position={center}
-          // required
-        />
       </GoogleMap>
     </div>
   ) : (
     <></>
   );
-}
+};
 
 export default memo(React.forwardRef(Map));
