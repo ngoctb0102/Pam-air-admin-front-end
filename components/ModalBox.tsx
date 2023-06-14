@@ -1,6 +1,8 @@
 import styleModal from "../public/style/modal.module.css";
 import React, { useRef, useImperativeHandle } from "react";
-type ModalProps = {};
+type ModalProps = {
+  Location: string;
+};
 
 export type ModalHandle = {
   displayOnClick: () => void;
@@ -77,7 +79,7 @@ const table2 = () => {
   );
 };
 const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
-  props,
+  props: ModalProps,
   forwardedRef
 ) => {
   const modal = useRef<HTMLInputElement>();
@@ -93,7 +95,7 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
         <div className={styleModal.modalContent}>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <div>
-              <p className={styleModal.formCell}>Data To be fetch</p>
+              <p className={styleModal.formCell}>{props.Location}</p>
               <div className={styleModal.formCell}>
                 <p>Data</p>
                 <p>Missing Value</p>

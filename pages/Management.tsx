@@ -11,6 +11,7 @@ export default function Management() {
   const searchRef = useRef<SearchHandle>();
   const mapRef = useRef<MapHandle>();
   const [inputState, setInputState] = useState("");
+
   useEffect(() => {
     if (inputState != "") {
       searchRef.current.modifyInputValue(inputState);
@@ -67,7 +68,7 @@ export default function Management() {
           ref={mapRef}
         />
       </div>
-      <ModalBox ref={modalRef} />
+      <ModalBox Location={mapRef.current.getLocation()} ref={modalRef} />
     </div>
   );
 }

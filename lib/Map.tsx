@@ -1,4 +1,10 @@
-import React, { useState, useCallback, memo, useImperativeHandle } from "react";
+import React, {
+  useState,
+  useCallback,
+  memo,
+  useImperativeHandle,
+  useEffect,
+} from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -17,15 +23,22 @@ type MapProps = {
 
 export type MapHandle = {
   setMapCenter: (a) => void;
+  getLocation: () => string;
 };
 const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
   props: MapProps,
   forwardedRef
 ) => {
+  const [map, setMap] = useState(null);
+  const [locationState, setLocationState] = useState("");
+  let LocationRealState = "";
   const [center, setCenter] = useState({
     lat: 105.78,
     lng: 21.08,
   });
+  useEffect(() => {
+    LocationRealState = locationState;
+  }, [locationState]);
   useImperativeHandle(forwardedRef, () => {
     return {
       setMapCenter: (a) => {
@@ -34,14 +47,15 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
           lng: a[1],
         });
       },
+      getLocation: () => {
+        return LocationRealState;
+      },
     };
   });
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyDUDvpmQtipK5Se-zjce5zWSMNbG2LO2j4",
   });
-
-  const [map, setMap] = useState(null);
 
   const onLoad = useCallback(function callback(map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -72,6 +86,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
                 // required
                 key={index}
                 onClick={() => {
+                  setLocationState(items[1] + "," + items[2]);
                   props.onClick();
                 }}
                 position={{
@@ -90,6 +105,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
                 // required
                 key={index}
                 onClick={() => {
+                  setLocationState(items[1] + "," + items[2]);
                   props.onClick();
                 }}
                 position={{
