@@ -11,7 +11,7 @@ export default function Management() {
   const searchRef = useRef<SearchHandle>();
   const mapRef = useRef<MapHandle>();
   const [inputState, setInputState] = useState("");
-
+  const [nameLocationState, setNameLocationState] = useState("");
   useEffect(() => {
     if (inputState != "") {
       searchRef.current.modifyInputValue(inputState);
@@ -48,7 +48,7 @@ export default function Management() {
           }}
         />
         <Map
-          onClick={async () => {
+          onClick={async (e) => {
             // const res = await fetch("http://202.191.58.206/pamair/hourly", {
             //   method: "POST",
             //   headers: { "Content-Type": "application/json" },
@@ -63,12 +63,13 @@ export default function Management() {
             //     return result.aqi_us[0];
             //   })
             // );
+            setNameLocationState(e);
             modalRef.current.displayOnClick();
           }}
           ref={mapRef}
         />
       </div>
-      <ModalBox Location={mapRef.current.getLocation()} ref={modalRef} />
+      <ModalBox Location={nameLocationState} ref={modalRef} />
     </div>
   );
 }

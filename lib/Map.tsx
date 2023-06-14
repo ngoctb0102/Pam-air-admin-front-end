@@ -18,27 +18,24 @@ const containerStyle = {
   height: "500px",
 };
 type MapProps = {
-  onClick: () => void;
+  onClick: (e) => void;
 };
 
 export type MapHandle = {
   setMapCenter: (a) => void;
-  getLocation: () => string;
+  // getLocation: () => string;
 };
 const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
   props: MapProps,
   forwardedRef
 ) => {
   const [map, setMap] = useState(null);
-  const [locationState, setLocationState] = useState("");
-  let LocationRealState = "";
+
   const [center, setCenter] = useState({
     lat: 105.78,
     lng: 21.08,
   });
-  useEffect(() => {
-    LocationRealState = locationState;
-  }, [locationState]);
+
   useImperativeHandle(forwardedRef, () => {
     return {
       setMapCenter: (a) => {
@@ -47,9 +44,9 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
           lng: a[1],
         });
       },
-      getLocation: () => {
-        return LocationRealState;
-      },
+      // getLocation: () => {
+      //   return LocationRealState;
+      // },
     };
   });
   const { isLoaded } = useJsApiLoader({
@@ -84,10 +81,10 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
             return (
               <Marker
                 // required
-                key={index}
-                onClick={() => {
-                  setLocationState(items[1] + "," + items[2]);
-                  props.onClick();
+                key={items[1] + "," + items[2]}
+                onClick={(e) => {
+                  console.log(items[1] + "," + items[2]);
+                  props.onClick(items[1] + "," + items[2]);
                 }}
                 position={{
                   lat: items[3],
@@ -103,10 +100,10 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
             return (
               <Marker
                 // required
-                key={index}
-                onClick={() => {
-                  setLocationState(items[1] + "," + items[2]);
-                  props.onClick();
+                key={items[1] + "," + items[2]}
+                onClick={(e) => {
+                  console.log(items[1] + "," + items[2]);
+                  props.onClick(items[1] + "," + items[2]);
                 }}
                 position={{
                   lat: items[3],
