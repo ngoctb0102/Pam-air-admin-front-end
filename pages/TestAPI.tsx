@@ -8,6 +8,11 @@ import styleTestAPI from "../public/style/TestAPI.module.css";
 import { HaNoiDistrict } from "../lib/HaNoiDistrict";
 import { HoChiMinhDistrict } from "../lib/HoChiMinhDistrict";
 import ReactLoading from "react-loading";
+import sadface from "../img/sadface.png";
+import normalface from "../img/normalface.png";
+import happyface from "../img/happyface.png";
+import veryhappyface from "../img/veryhappyface.png";
+import verysadface from "../img/verysadface.png";
 
 export default function TestAPI() {
   let [cityState, setCityState] = useState("");
@@ -62,6 +67,7 @@ export default function TestAPI() {
   const predictCard = (time, pm25, VNAQILevel, USAQILevel) => {
     let color = "";
     let pollutionLevel = "";
+    let imgSrc: any;
     if (parseFloat(VNAQILevel) >= 0 && parseFloat(VNAQILevel) <= 50) {
       pollutionLevel = "Good";
     } else if (parseFloat(VNAQILevel) <= 100) {
@@ -75,14 +81,19 @@ export default function TestAPI() {
     }
     if (pollutionLevel === "Good") {
       color = "blue";
+      imgSrc = veryhappyface;
     } else if (pollutionLevel === "Moderate") {
       color = "yellow";
+      imgSrc = happyface;
     } else if (pollutionLevel === "Bad") {
       color = "orange";
+      imgSrc = normalface;
     } else if (pollutionLevel === "Harmful") {
       color = "red";
+      imgSrc = sadface;
     } else if (pollutionLevel === "Unsafe") {
       color = "maroon";
+      imgSrc = verysadface;
     }
     return (
       <div style={{ display: "flex", marginBottom: "20px" }}>
@@ -96,23 +107,61 @@ export default function TestAPI() {
             borderRadius: "15px",
             padding: "5px",
             backgroundColor: `${color}`,
+            alignContent: "center",
           }}
         >
-          <h5 style={{ marginRight: "20px" }}>{pollutionLevel}</h5>
+          <h3 style={{ marginRight: "20px" }}>{pollutionLevel}</h3>
           <div>
-            <h5 style={{ marginRight: "20px", marginBottom: "0" }}>pm2.5</h5>
-            <h5 style={{ marginRight: "20px", marginTop: "0" }}>
-              {parseFloat(pm25).toFixed(2)}
-            </h5>
+            <h3 style={{ marginBottom: "0" }}>pm2.5</h3>
+            <h3 style={{ marginTop: "0" }}>{parseFloat(pm25).toFixed(2)}</h3>
           </div>
-          <div style={{ display: "flex" }}>
-            <h5 style={{ marginRight: "20px" }}>
-              {parseFloat(VNAQILevel).toFixed(2) + " VN AQI"}
-            </h5>
-            <h5 style={{ marginRight: "20px" }}>
-              {parseFloat(USAQILevel).toFixed(2) + " US AQI"}
-            </h5>
-            <div>someIcon</div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+              width: "100px",
+              height: "100px",
+              overflow: "hidden",
+              margin: "0px",
+            }}
+          >
+            <h3 style={{ width: "75px" }}>
+              {parseFloat(VNAQILevel).toFixed(2)}
+              <br></br>VN AQI
+            </h3>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+              width: "100px",
+              height: "100px",
+              overflow: "hidden",
+              margin: "0px",
+            }}
+          >
+            <h3 style={{ width: "75px" }}>
+              {parseFloat(USAQILevel).toFixed(2)}
+              <br></br>US AQI
+            </h3>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+              width: "100px",
+              height: "100px",
+              overflow: "hidden",
+            }}
+          >
+            <img
+              src={imgSrc.src}
+              alt="nothing"
+              style={{ transform: "scale(0.3)" }}
+            />
           </div>
         </div>
       </div>

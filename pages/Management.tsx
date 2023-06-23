@@ -11,7 +11,10 @@ export default function Management() {
   const searchRef = useRef<SearchHandle>();
   const mapRef = useRef<MapHandle>();
   const [inputState, setInputState] = useState("");
-  const [nameLocationState, setNameLocationState] = useState("");
+  const [nameLocationState, setNameLocationState] = useState(["", ""]);
+  const [LoadingOrNot, setLoadingOrNot] = useState(null);
+  const [dataTable, setDataTable] = useState(null);
+  let isLoading = null;
   useEffect(() => {
     if (inputState != "") {
       searchRef.current.modifyInputValue(inputState);
@@ -21,7 +24,31 @@ export default function Management() {
       console.log(searchRef.current.returnInputValue());
     }
   }, [inputState]);
-
+  useEffect(() => {
+    console.log(nameLocationState);
+    setLoadingOrNot(true);
+    const getAPI = async () => {
+      const res = await fetch("http://202.191.58.206/pamair/info", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          district: nameLocationState[0],
+          city: nameLocationState[1],
+        }),
+      });
+      const data = await res.json();
+      setDataTable(data);
+      console.log(data);
+      setLoadingOrNot(false);
+    };
+    if (nameLocationState[0] != "") {
+      getAPI();
+    }
+  }, [nameLocationState]);
+  useEffect(() => {
+    isLoading = LoadingOrNot;
+    console.log(isLoading);
+  }, [LoadingOrNot]);
   return (
     <div>
       <SearchBar
@@ -49,27 +76,19 @@ export default function Management() {
         />
         <Map
           onClick={async (e) => {
-            // const res = await fetch("http://202.191.58.206/pamair/hourly", {
-            //   method: "POST",
-            //   headers: { "Content-Type": "application/json" },
-            //   body: JSON.stringify({
-            //     city: "Ha Noi",
-            //     district: "Quan Hoan Kiem",
-            //   }),
-            // });
-            // const data = res.json();
-            // console.log(
-            //   data.then(function (result) {
-            //     return result.aqi_us[0];
-            //   })
-            // );
-            setNameLocationState(e);
+            await setNameLocationState(e);
+
             modalRef.current.displayOnClick();
           }}
           ref={mapRef}
         />
       </div>
-      <ModalBox Location={nameLocationState} ref={modalRef} />
+      <ModalBox
+        data={dataTable}
+        Location={nameLocationState[0]}
+        loadingOrNot={LoadingOrNot}
+        ref={modalRef}
+      />
     </div>
   );
 }

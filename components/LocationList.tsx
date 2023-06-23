@@ -47,10 +47,12 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           }}
           key={item3}
           className={item3 + "," + item4}
-          onClick={props.onClick}
         >
           <h4
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               height: "72px",
               width: "70px",
               border: "2px solid black",
@@ -62,6 +64,8 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           </h4>
           <h4
             style={{
+              display: "flex",
+              alignItems: "center",
               height: "72px",
               width: "150px",
               border: "2px solid black",
@@ -73,6 +77,9 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           </h4>
           <h4
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               height: "72px",
               width: "150px",
               border: "2px solid black",
@@ -84,6 +91,9 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           </h4>
           <h4
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               height: "72px",
               width: "150px",
               border: "2px solid black",
@@ -91,14 +101,25 @@ function LocationList(props: { onClick: (e) => void }, ref) {
               cursor: "pointer",
             }}
           >
-            {typeof item3 === "number" && typeof item4 === "number" ? (
-              item3.toFixed(2) + "," + item4.toFixed(2)
-            ) : (
-              <div>
-                <div>{item3}</div>
-                <div>{item4}</div>
-              </div>
-            )}
+            {typeof item3 === "number" && typeof item4 === "number"
+              ? item3.toFixed(2)
+              : item3}
+          </h4>
+          <h4
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "72px",
+              width: "150px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {typeof item3 === "number" && typeof item4 === "number"
+              ? item4.toFixed(2)
+              : item4}
           </h4>
         </div>
       </div>
@@ -117,6 +138,9 @@ function LocationList(props: { onClick: (e) => void }, ref) {
         >
           <h4
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               height: "72px",
               width: "70px",
               border: "2px solid black",
@@ -128,6 +152,8 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           </h4>
           <h4
             style={{
+              display: "flex",
+              alignItems: "center",
               height: "72px",
               width: "150px",
               border: "2px solid black",
@@ -139,6 +165,9 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           </h4>
           <h4
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               height: "72px",
               width: "150px",
               border: "2px solid black",
@@ -150,6 +179,10 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           </h4>
           <h4
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+
               height: "72px",
               width: "150px",
               border: "2px solid black",
@@ -157,14 +190,26 @@ function LocationList(props: { onClick: (e) => void }, ref) {
               cursor: "pointer",
             }}
           >
-            {typeof item3 === "number" && typeof item4 === "number" ? (
-              item3.toFixed(2) + "," + item4.toFixed(2)
-            ) : (
-              <div>
-                <div>{item3}</div>
-                <div>{item4}</div>
-              </div>
-            )}
+            {typeof item3 === "number" && typeof item4 === "number"
+              ? item3.toFixed(2)
+              : item3}
+          </h4>
+          <h4
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+
+              height: "72px",
+              width: "150px",
+              border: "2px solid black",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          >
+            {typeof item3 === "number" && typeof item4 === "number"
+              ? item4.toFixed(2)
+              : item4}
           </h4>
         </div>
       </div>
@@ -186,10 +231,100 @@ function LocationList(props: { onClick: (e) => void }, ref) {
     <div className={LocationListStyle.LocationList}>
       <div
         onClick={() => checkListState()}
-        style={{ display: "flex", justifyContent: "center", width: "100%" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        }}
       >
         <h2>{ListState}</h2>
       </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          border: "2px solid black",
+          borderRadius: "5px",
+          padding: "0px",
+          position: "sticky",
+          top: "0",
+          backgroundColor: "black",
+          color: "beige",
+        }}
+      >
+        <h4
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "72px",
+            width: "93px",
+            border: "2px solid beige",
+            margin: "0px",
+            cursor: "pointer",
+          }}
+        >
+          Ma Tram
+        </h4>
+        <h4
+          style={{
+            display: "flex",
+            alignItems: "center",
+            height: "72px",
+            width: "150px",
+            border: "2px solid beige",
+            margin: "0px",
+            cursor: "pointer",
+          }}
+        >
+          Ten Tram
+        </h4>
+        <h4
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "72px",
+            width: "150px",
+            border: "2px solid beige",
+            margin: "0px",
+            cursor: "pointer",
+          }}
+        >
+          Ten Quan
+        </h4>
+        <h4
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+
+            height: "72px",
+            width: "150px",
+            border: "2px solid beige",
+            margin: "0px",
+            cursor: "pointer",
+          }}
+        >
+          Lat
+        </h4>
+        <h4
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "72px",
+            width: "150px",
+            border: "2px solid beige",
+            margin: "0px",
+            cursor: "pointer",
+          }}
+        >
+          Lng
+        </h4>
+      </div>
+
       {ListState === "Ha Noi"
         ? ListLocationCard(HaNoiLocationList)
         : ListLocationCard(HoChiMinhLocationList)}

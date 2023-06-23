@@ -9,6 +9,9 @@
   width: 100vw;
   height: 100vh;
 }
+img {
+  max-width: none !important;
+}
 html {
   display: flex;
   overflow: hidden;

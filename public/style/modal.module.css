@@ -11,6 +11,13 @@
   overflow: hidden; /* Enable scroll if needed */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
+.tableContainer {
+  overflow: scroll;
+  height: 125px;
+}
+.tableContainer::-webkit-scrollbar {
+  display: none;
+}
 .table {
   border: 2px solid black;
   border-spacing: 0;
@@ -40,7 +47,8 @@
   padding: 20px;
   border: 1px solid #888;
   width: 400px; /* Could be more or less, depending on screen size */
-  height: 500px;
+  height: 600px;
+  z-index: 10;
 }
 
 /* The Close Button */
@@ -94,6 +102,7 @@
   width: 100px;
   overflow: auto;
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+  z-index: 10;
 }
 .dropdownModelMenu:hover .dropdownContentModelMenu {
   display: block;
