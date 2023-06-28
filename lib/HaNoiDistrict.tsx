@@ -11,4 +11,12 @@ export const HaNoiDistrict: Array<string> = [
   "Quan Ha Dong",
   "Quan Tay Ho",
   "Quan Nam Tu Liem",
+  "Huyen Gia Lam",
+  "Huyen Quoc Oai",
+  "Huyen Phu Xuyen",
+  "Huyen Ba Vi",
+  "Huyen My Duc",
+  "Huyen Me Linh",
+  "Huyen Soc Son",
+  "Huyen Thach That",
 ];

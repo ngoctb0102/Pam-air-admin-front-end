@@ -3,17 +3,21 @@ import Map, { MapHandle } from "../lib/Map";
 import Nav from "../components/Nav";
 import ModalBox, { ModalHandle } from "../components/ModalBox";
 import SearchBar, { SearchHandle } from "../components/SearchBar";
-import DropDownMenu from "../components/DropDownMenu";
+import DropDownMenu, { dropDownMenuHandle } from "../components/DropDownMenu";
 import LocationList from "../components/LocationList";
-
+import { HaNoiDistrict } from "../lib/HaNoiDistrict";
+import { HoChiMinhDistrict } from "../lib/HoChiMinhDistrict";
+import { VietNamLocationList } from "../lib/VietNamLocationList";
 export default function Management() {
   const modalRef = useRef<ModalHandle>();
   const searchRef = useRef<SearchHandle>();
   const mapRef = useRef<MapHandle>();
+  const dropDownMenuRef = useRef<dropDownMenuHandle>();
   const [inputState, setInputState] = useState("");
   const [nameLocationState, setNameLocationState] = useState(["", ""]);
   const [LoadingOrNot, setLoadingOrNot] = useState(null);
   const [dataTable, setDataTable] = useState(null);
+  const [cityMode, setCityMode] = useState("Hourly");
   let isLoading = null;
   useEffect(() => {
     if (inputState != "") {
@@ -38,7 +42,6 @@ export default function Management() {
       });
       const data = await res.json();
       setDataTable(data);
-      console.log(data);
       setLoadingOrNot(false);
     };
     if (nameLocationState[0] != "") {
@@ -54,12 +57,31 @@ export default function Management() {
       <SearchBar
         ref={searchRef}
         onClick={() => {
-          mapRef.current.setMapCenter(
-            JSON.parse("[" + searchRef.current.returnInputValue() + "]")
-          );
+          let inputVal = searchRef.current.returnInputValue();
+          console.log(1);
+
+          if (HaNoiDistrict.includes(inputVal)) {
+            console.log(2);
+            setNameLocationState([inputVal, "Ha Noi"]);
+          } else if (HoChiMinhDistrict.includes(inputVal)) {
+            console.log(3);
+            setNameLocationState([inputVal, "Ho Chi Minh"]);
+          } else if (VietNamLocationList.includes(inputVal)) {
+            console.log(4);
+            setNameLocationState([inputVal, inputVal]);
+          } else {
+            alert("Enter a valid value lat,lng or district city");
+          }
+          modalRef.current.displayOnClick();
         }}
       />
-      <DropDownMenu />
+      <DropDownMenu
+        onClick={(e) => {
+          setCityMode(e);
+          console.log(cityMode);
+        }}
+        ref={dropDownMenuRef}
+      />
       <div
         style={{
           display: "flex",
@@ -80,6 +102,7 @@ export default function Management() {
 
             modalRef.current.displayOnClick();
           }}
+          cityMode={cityMode}
           ref={mapRef}
         />
       </div>

@@ -15,4 +15,5 @@ export const HoChiMinhDistrict: Array<string> = [
   "Quan Phu Nhuan",
   "Quan Tan Binh",
   "Quan Tan Phu",
+  "Huyen Binh Chanh",
 ];

@@ -1,5 +1,25 @@
 import DropDownMenuStyle from "../public/style/DropDownMenu.module.css";
-export default function DropDownMenu() {
+import React, { useState, useImperativeHandle } from "react";
+type dropDownMenuProps = {
+  onClick: (e) => void;
+};
+
+export type dropDownMenuHandle = {
+  setCityMode: () => string;
+  // getLocation: () => string;
+};
+const DropDownMenu: React.ForwardRefRenderFunction<
+  dropDownMenuHandle,
+  dropDownMenuProps
+> = (props: dropDownMenuProps, forwardedRef) => {
+  const [dropDownCityState, setDropDownCityState] = useState("Hourly");
+  useImperativeHandle(forwardedRef, () => {
+    return {
+      setCityMode: () => {
+        return dropDownCityState;
+      },
+    };
+  });
   return (
     <div className={DropDownMenuStyle.dropdown}>
       <div className={DropDownMenuStyle.dropBox}>
@@ -7,9 +27,11 @@ export default function DropDownMenu() {
         <input placeholder={"select your state"} />
       </div>
       <div className={DropDownMenuStyle.dropdownContent}>
-        <a>Hourly</a>
-        <a>Daily</a>
+        <a onClick={() => props.onClick("Hourly")}>Hourly</a>
+        <a onClick={() => props.onClick("Daily")}>Daily</a>
       </div>
     </div>
   );
-}
+};
+
+export default React.forwardRef(DropDownMenu);

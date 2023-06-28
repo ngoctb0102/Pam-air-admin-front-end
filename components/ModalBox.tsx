@@ -1,7 +1,6 @@
 import styleModal from "../public/style/modal.module.css";
 import React, { useRef, useImperativeHandle } from "react";
 import ReactLoading from "react-loading";
-
 type ModalProps = {
   Location: string;
   loadingOrNot: boolean;
@@ -178,6 +177,46 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
   props: ModalProps,
   forwardedRef
 ) => {
+  const LastUpdate = new Date();
+  let LastUpdateMonth;
+  switch (LastUpdate.getMonth()) {
+    case 0:
+      LastUpdateMonth = "Jan";
+      break;
+    case 1:
+      LastUpdateMonth = "Feb";
+      break;
+    case 2:
+      LastUpdateMonth = "Mar";
+      break;
+    case 3:
+      LastUpdateMonth = "Apr";
+      break;
+    case 4:
+      LastUpdateMonth = "May";
+      break;
+    case 5:
+      LastUpdateMonth = "Jun";
+      break;
+    case 6:
+      LastUpdateMonth = "Jul";
+      break;
+    case 7:
+      LastUpdateMonth = "Aug";
+      break;
+    case 8:
+      LastUpdateMonth = "Sep";
+      break;
+    case 9:
+      LastUpdateMonth = "Oct";
+      break;
+    case 10:
+      LastUpdateMonth = "Nov";
+      break;
+    case 11:
+      LastUpdateMonth = "Dec";
+      break;
+  }
   const modal = useRef<HTMLInputElement>();
   const closeOnClick = (e) => {
     modal.current.style.display = "none";
@@ -217,7 +256,7 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
                     {table2(props.data)}
                   </div>
                 </div>
-                <p>Last updated:</p>
+                <p>Last updated: {LastUpdateMonth} 1</p>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <button
                     onClick={closeOnClick}
@@ -239,20 +278,32 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
                 style={{
                   width: "100%",
                   display: "flex",
+                  height: "100%",
+
                   justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
                 <div>
                   <div
                     style={{
                       width: "100%",
+
                       display: "flex",
                       justifyContent: "center",
+                      alignItems: "center",
                     }}
                   >
                     <ReactLoading type="balls" color="#000" />
                   </div>
                   <h3>waiting to fetch goods</h3>
+                  <button
+                    className={styleModal.formButton}
+                    style={{ color: "black", backgroundColor: "white" }}
+                    onClick={closeOnClick}
+                  >
+                    Stop
+                  </button>
                 </div>
               </div>
             )}
