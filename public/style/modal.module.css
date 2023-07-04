@@ -46,9 +46,13 @@
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
-  width: 400px; /* Could be more or less, depending on screen size */
-  height: 600px;
+  width: 280px; /* Could be more or less, depending on screen size */
+  height: 550px;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* The Close Button */

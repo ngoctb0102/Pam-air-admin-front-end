@@ -1,12 +1,14 @@
 import SearchBarStyle from "../public/style/SearchBar.module.css";
 import searchIcon from "../img/searchIcon.png";
 import React, { useRef, useImperativeHandle } from "react";
+import { HaNoiDistrict } from "../lib/HaNoiDistrict";
 type SearchProps = { onClick: () => void };
 
 export type SearchHandle = {
   returnInputValue: () => string;
   modifyInputValue: (e: any) => void;
 };
+
 const SearchBar: React.ForwardRefRenderFunction<SearchHandle, SearchProps> = (
   props: SearchProps,
   forwardedRef
@@ -23,19 +25,21 @@ const SearchBar: React.ForwardRefRenderFunction<SearchHandle, SearchProps> = (
     };
   });
   return (
-    <div className={SearchBarStyle.searchBarContainer}>
-      <input
-        key="search-bar"
-        className={SearchBarStyle.searchBar}
-        placeholder={"search"}
-        ref={inputRef}
-      />
-      <img
-        alt="error"
-        className={SearchBarStyle.searchBarIcon}
-        src={searchIcon.src}
-        onClick={props.onClick}
-      ></img>
+    <div>
+      <div className={SearchBarStyle.searchBarContainer}>
+        <input
+          key="search-bar"
+          className={SearchBarStyle.searchBar}
+          placeholder={"search"}
+          ref={inputRef}
+        />
+        <img
+          alt="error"
+          className={SearchBarStyle.searchBarIcon}
+          src={searchIcon.src}
+          onClick={props.onClick}
+        ></img>
+      </div>
     </div>
   );
 };

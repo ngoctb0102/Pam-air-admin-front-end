@@ -66,6 +66,7 @@ export default function TestAPI() {
   };
   const predictCard = (time, pm25, VNAQILevel, USAQILevel) => {
     let color = "";
+
     let pollutionLevel = "";
     let imgSrc: any;
     if (parseFloat(VNAQILevel) >= 0 && parseFloat(VNAQILevel) <= 50) {
@@ -97,16 +98,17 @@ export default function TestAPI() {
     }
     return (
       <div style={{ display: "flex", marginBottom: "20px" }}>
-        <h5 style={{ width: "100px" }}>{time}</h5>
+        <h3 style={{ width: "200px" }}>{time}</h3>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            width: "700px",
+            width: "500px",
             border: `2px solid ${color}`,
             borderRadius: "15px",
             padding: "5px",
             backgroundColor: `${color}`,
+            color: color === "blue" ? "white" : "",
             alignContent: "center",
           }}
         >
@@ -127,8 +129,8 @@ export default function TestAPI() {
             }}
           >
             <h3 style={{ width: "75px" }}>
+              VN AQI<br></br>
               {parseFloat(VNAQILevel).toFixed(2)}
-              <br></br>VN AQI
             </h3>
           </div>
           <div
@@ -143,8 +145,8 @@ export default function TestAPI() {
             }}
           >
             <h3 style={{ width: "75px" }}>
+              US AQI<br></br>
               {parseFloat(USAQILevel).toFixed(2)}
-              <br></br>US AQI
             </h3>
           </div>
           <div
@@ -160,7 +162,10 @@ export default function TestAPI() {
             <img
               src={imgSrc.src}
               alt="nothing"
-              style={{ transform: "scale(0.3)" }}
+              style={{
+                transform: "scale(0.3)",
+                filter: color === "blue" ? "invert(1) " : "",
+              }}
             />
           </div>
         </div>
@@ -290,7 +295,13 @@ export default function TestAPI() {
           }}
         >
           <div style={{ display: "flex" }}>
-            <h3 style={{ marginRight: "20px", width: "100px" }}>
+            <h3
+              style={{
+                marginRight: "120px",
+                marginLeft: "20px",
+                width: "100px",
+              }}
+            >
               {modelState === "12 hours" ? "Hour" : "Day"}
             </h3>
             <h3>Pollution Level</h3>

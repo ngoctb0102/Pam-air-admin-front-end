@@ -297,13 +297,21 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
                     <ReactLoading type="balls" color="#000" />
                   </div>
                   <h3>waiting to fetch goods</h3>
-                  <button
-                    className={styleModal.formButton}
-                    style={{ color: "black", backgroundColor: "white" }}
-                    onClick={closeOnClick}
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
                   >
-                    Stop
-                  </button>
+                    <button
+                      className={styleModal.formButton}
+                      style={{ color: "black", backgroundColor: "white" }}
+                      onClick={closeOnClick}
+                    >
+                      Stop
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
