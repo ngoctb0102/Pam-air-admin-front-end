@@ -98,7 +98,16 @@ export default function TestAPI() {
     }
     return (
       <div style={{ display: "flex", marginBottom: "20px" }}>
-        <h3 style={{ width: "200px" }}>{time}</h3>
+        <h3
+          style={{
+            width: "200px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {time}
+        </h3>
         <div
           style={{
             display: "flex",
@@ -112,42 +121,92 @@ export default function TestAPI() {
             alignContent: "center",
           }}
         >
-          <h3 style={{ marginRight: "20px" }}>{pollutionLevel}</h3>
-          <div>
-            <h3 style={{ marginBottom: "0" }}>pm2.5</h3>
-            <h3 style={{ marginTop: "0" }}>{parseFloat(pm25).toFixed(2)}</h3>
+          <h3
+            style={{
+              marginRight: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "0",
+              width: "100px",
+            }}
+          >
+            {pollutionLevel}
+          </h3>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100px",
+            }}
+          >
+            <div>
+              <h3 style={{ marginBottom: "0", margin: "0" }}>PM2.5</h3>
+              <h3
+                style={{
+                  marginTop: "0",
+                  margin: "0",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                {parseFloat(pm25).toFixed(2)}
+              </h3>
+            </div>
           </div>
           <div
             style={{
               display: "flex",
               justifyContent: "center",
-              alignContent: "center",
+              alignItems: "center",
               width: "100px",
               height: "100px",
               overflow: "hidden",
               margin: "0px",
             }}
           >
-            <h3 style={{ width: "75px" }}>
-              VN AQI<br></br>
-              {parseFloat(VNAQILevel).toFixed(2)}
-            </h3>
+            <div>
+              <h3 style={{ marginBottom: "0", margin: "0" }}>VN AQI</h3>
+              <h3
+                style={{
+                  marginTop: "0",
+                  margin: "0",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                {parseFloat(VNAQILevel).toFixed(2)}
+              </h3>
+            </div>
           </div>
           <div
             style={{
               display: "flex",
               justifyContent: "center",
-              alignContent: "center",
+              alignItems: "center",
               width: "100px",
               height: "100px",
               overflow: "hidden",
               margin: "0px",
             }}
           >
-            <h3 style={{ width: "75px" }}>
-              US AQI<br></br>
-              {parseFloat(USAQILevel).toFixed(2)}
-            </h3>
+            <div>
+              <h3 style={{ marginBottom: "0", margin: "0" }}>US AQI</h3>
+              <h3
+                style={{
+                  marginTop: "0",
+                  margin: "0",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                {parseFloat(USAQILevel).toFixed(2)}
+              </h3>
+            </div>
           </div>
           <div
             style={{
@@ -163,7 +222,7 @@ export default function TestAPI() {
               src={imgSrc.src}
               alt="nothing"
               style={{
-                transform: "scale(0.3)",
+                transform: "scale(0.4)",
                 filter: color === "blue" ? "invert(1) " : "",
               }}
             />

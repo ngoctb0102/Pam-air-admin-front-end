@@ -8,6 +8,14 @@ import LocationList from "../components/LocationList";
 import { HaNoiDistrict } from "../lib/HaNoiDistrict";
 import { HoChiMinhDistrict } from "../lib/HoChiMinhDistrict";
 import { VietNamLocationList } from "../lib/VietNamLocationList";
+const searchArray = (array, result) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i].includes(result)) {
+      return true;
+    }
+  }
+  return false;
+};
 export default function Management() {
   const modalRef = useRef<ModalHandle>();
   const searchRef = useRef<SearchHandle>();
@@ -50,7 +58,6 @@ export default function Management() {
   }, [nameLocationState]);
   useEffect(() => {
     isLoading = LoadingOrNot;
-    console.log(isLoading);
   }, [LoadingOrNot]);
   return (
     <div>
@@ -58,21 +65,23 @@ export default function Management() {
         ref={searchRef}
         onClick={() => {
           let inputVal = searchRef.current.returnInputValue();
-          console.log(1);
 
-          if (HaNoiDistrict.includes(inputVal)) {
+          if (searchArray(HaNoiDistrict, inputVal)) {
             console.log(2);
             setNameLocationState([inputVal, "Ha Noi"]);
-          } else if (HoChiMinhDistrict.includes(inputVal)) {
+            modalRef.current.displayOnClick();
+          } else if (searchArray(HoChiMinhDistrict, inputVal)) {
             console.log(3);
             setNameLocationState([inputVal, "Ho Chi Minh"]);
-          } else if (VietNamLocationList.includes(inputVal)) {
+            modalRef.current.displayOnClick();
+          } else if (searchArray(VietNamLocationList, inputVal)) {
             console.log(4);
             setNameLocationState([inputVal, inputVal]);
+            modalRef.current.displayOnClick();
           } else {
+            console.log(5);
             alert("Enter a valid value lat,lng or district city");
           }
-          modalRef.current.displayOnClick();
         }}
       />
       <DropDownMenu
@@ -108,6 +117,7 @@ export default function Management() {
       </div>
       <ModalBox
         data={dataTable}
+        cityMode={cityMode}
         Location={nameLocationState[0]}
         loadingOrNot={LoadingOrNot}
         ref={modalRef}
