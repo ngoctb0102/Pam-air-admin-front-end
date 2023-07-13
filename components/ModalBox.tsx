@@ -5,6 +5,7 @@ type ModalProps = {
   Location: string;
   loadingOrNot: boolean;
   data: any;
+  cityMode: string;
 };
 
 export type ModalHandle = {
@@ -64,6 +65,48 @@ const table = (data) => {
         <td>{data.median["1"].toFixed(2)}</td>
         <td>{data.median["2"].toFixed(2)}</td>
         <td>{data.median["3"].toFixed(2)}</td>
+      </tr>
+    </table>
+  );
+};
+const table3 = (data) => {
+  return (
+    <table className={styleModal.table}>
+      <tr
+        style={{
+          position: "sticky",
+          top: "0",
+          backgroundColor: "black",
+          color: "white",
+          zIndex: "1",
+        }}
+      >
+        <th></th>
+        <th>R2</th>
+        <th>Mdape</th>
+        <th>Slope</th>
+        <th>Offset</th>
+      </tr>
+      <tr>
+        <td>1 day</td>
+        <td>{data.r2[0].toFixed(2)}</td>
+        <td>{data.mdape[0].toFixed(2)}</td>
+        <td>{data.slope[0].toFixed(2)}</td>
+        <td>{data.ofset[0].toFixed(2)}</td>
+      </tr>
+      <tr>
+        <td>2 days </td>
+        <td>{data.r2[1].toFixed(2)}</td>
+        <td>{data.mdape[1].toFixed(2)}</td>
+        <td>{data.slope[1].toFixed(2)}</td>
+        <td>{data.ofset[1].toFixed(2)}</td>
+      </tr>
+      <tr>
+        <td>3 days </td>
+        <td>{data.r2[2].toFixed(2)}</td>
+        <td>{data.mdape[2].toFixed(2)}</td>
+        <td>{data.slope[2].toFixed(2)}</td>
+        <td>{data.ofset[2].toFixed(2)}</td>
       </tr>
     </table>
   );
@@ -253,7 +296,9 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
                     {selectModelMenu()}
                   </div>
                   <div className={styleModal.tableContainer}>
-                    {table2(props.data)}
+                    {props.cityMode === "daily"
+                      ? table2(props.data)
+                      : table3(props.data)}
                   </div>
                 </div>
                 <p>Last updated: {LastUpdateMonth} 1</p>

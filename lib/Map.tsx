@@ -193,7 +193,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
                   key={items[2] + "," + items[1]}
                   onClick={(e) => {
                     console.log(items[2] + "," + items[1]);
-                    props.onClick([items[0], "Ha Noi"]);
+                    props.onClick([items[0], items[0]]);
                   }}
                   position={{
                     lat: items[1],

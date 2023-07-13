@@ -1,0 +1,21 @@
+[33mac5a66a[m[33m ([m[1;36mHEAD -> [m[1;32mupdate1[m[33m, [m[1;31morigin/update2[m[33m, [m[1;32mupdate2[m[33m)[m HEAD@{0}: reset: moving to HEAD
+[33mac5a66a[m[33m ([m[1;36mHEAD -> [m[1;32mupdate1[m[33m, [m[1;31morigin/update2[m[33m, [m[1;32mupdate2[m[33m)[m HEAD@{1}: checkout: moving from main to update1
+[33meb15b98[m[33m ([m[1;32mmain[m[33m)[m HEAD@{2}: commit: test
+[33md05e785[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{3}: reset: moving to HEAD
+[33md05e785[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{4}: commit: update
+[33m7abbbd0[m HEAD@{5}: commit: beautify
+[33mbc363c4[m HEAD@{6}: commit: final test
+[33mf5b62bb[m HEAD@{7}: commit: fixing all error
+[33m49279d4[m HEAD@{8}: commit: location udate
+[33m1e42cad[m HEAD@{9}: commit: typescript fix
+[33m1cd2304[m HEAD@{10}: commit: fixing bug
+[33m4ba915d[m HEAD@{11}: commit: final finish
+[33m8738d50[m HEAD@{12}: commit: update2
+[33mbe88767[m HEAD@{13}: reset: moving to origin/main
+[33mbe88767[m HEAD@{14}: checkout: moving from update1 to main
+[33mac5a66a[m[33m ([m[1;36mHEAD -> [m[1;32mupdate1[m[33m, [m[1;31morigin/update2[m[33m, [m[1;32mupdate2[m[33m)[m HEAD@{15}: commit: update2
+[33m4400cb7[m HEAD@{16}: pull: Fast-forward
+[33mfa02136[m HEAD@{17}: commit: first update - Hoang
+[33mbe88767[m HEAD@{18}: checkout: moving from main to update1
+[33mbe88767[m HEAD@{19}: Branch: renamed refs/heads/firstUpdate to refs/heads/main
+[33mbe88767[m HEAD@{21}: commit (initial): firstUpdate
