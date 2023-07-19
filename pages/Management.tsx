@@ -91,7 +91,6 @@ export default function Management() {
       <DropDownMenu
         onClick={(e) => {
           setCityMode(e);
-          console.log(cityMode);
         }}
         ref={dropDownMenuRef}
       />
@@ -112,7 +111,6 @@ export default function Management() {
         <Map
           onClick={async (e) => {
             await setNameLocationState(e);
-            console.log(cityMode);
             modalRef.current.displayOnClick();
           }}
           cityMode={cityMode}

@@ -21,6 +21,8 @@
 .table {
   border: 2px solid black;
   border-spacing: 0;
+  width: 220px;
+  text-align: center;
 }
 .table tr {
   border: 2px solid black;

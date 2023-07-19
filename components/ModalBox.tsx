@@ -95,14 +95,14 @@ const table3 = (data) => {
         <td>{data.ofset[0].toFixed(2)}</td>
       </tr>
       <tr>
-        <td>2 days </td>
+        <td>2 day</td>
         <td>{data.r2[1].toFixed(2)}</td>
         <td>{data.mdape[1].toFixed(2)}</td>
         <td>{data.slope[1].toFixed(2)}</td>
         <td>{data.ofset[1].toFixed(2)}</td>
       </tr>
       <tr>
-        <td>3 days </td>
+        <td>3 day</td>
         <td>{data.r2[2].toFixed(2)}</td>
         <td>{data.mdape[2].toFixed(2)}</td>
         <td>{data.slope[2].toFixed(2)}</td>
@@ -297,7 +297,7 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
                     {selectModelMenu()}
                   </div>
                   <div className={styleModal.tableContainer}>
-                    {props.cityMode === "Daily"
+                    {props.cityMode === "Hourly"
                       ? table2(props.data)
                       : table3(props.data)}
                   </div>
