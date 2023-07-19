@@ -53,7 +53,11 @@ export default function Management() {
       setLoadingOrNot(false);
     };
     if (nameLocationState[0] != "") {
-      getAPI();
+      try {
+        getAPI();
+      } catch (error) {
+        alert("Khu vuc hien tai khong co du lieu");
+      }
     }
   }, [nameLocationState]);
   useEffect(() => {
@@ -87,7 +91,6 @@ export default function Management() {
       <DropDownMenu
         onClick={(e) => {
           setCityMode(e);
-          console.log(cityMode);
         }}
         ref={dropDownMenuRef}
       />
@@ -108,7 +111,6 @@ export default function Management() {
         <Map
           onClick={async (e) => {
             await setNameLocationState(e);
-
             modalRef.current.displayOnClick();
           }}
           cityMode={cityMode}

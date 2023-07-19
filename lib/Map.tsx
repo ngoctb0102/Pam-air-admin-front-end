@@ -12,6 +12,7 @@ import {
   Marker,
   LoadScript,
   useLoadScript,
+  Rectangle,
 } from "@react-google-maps/api";
 import { HaNoiLocationList } from "./HaNoiLocationList";
 import { HoChiMinhLocationList } from "./HoChiMinhLocationList";
@@ -41,7 +42,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
     lat: 21.083367,
     lng: 105.783562,
   });
-  let zoom = props.cityMode === "Hourly" ? 4 : 10;
+  let zoom = props.cityMode === "Daily" ? 4 : 10;
 
   useImperativeHandle(forwardedRef, () => {
     return {
@@ -61,7 +62,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
     <div style={{ border: "2px solid black" }}>
       <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={zoom}>
         {/* Child components, such as markers, info windows, etc. */}
-        {props.cityMode === "Daily" ? (
+        {props.cityMode === "Hourly" ? (
           <div>
             {MarkerListHaNoi.map((items, index) => {
               return (
@@ -70,6 +71,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
                   key={items[2] + "," + items[1]}
                   onClick={(e) => {
                     console.log(items[2] + "," + items[1]);
+
                     props.onClick([items[0], "Ha Noi"]);
                   }}
                   position={{
@@ -77,6 +79,8 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
                     lng: items[1],
                   }}
                   // required
+
+                  label={items[0]}
                 />
               );
             })}
@@ -88,6 +92,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan 1", "Ho Chi Minh"]);
               }}
+              label="Quan 1"
             />
             <Marker
               key="Quan 3"
@@ -95,6 +100,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan 3", "Ho Chi Minh"]);
               }}
+              label="Quan 3"
             />
             <Marker
               key="Quan 4"
@@ -102,6 +108,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan 4", "Ho Chi Minh"]);
               }}
+              label="Quan 4"
             />
             <Marker
               key="Quan 5"
@@ -109,6 +116,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan 5", "Ho Chi Minh"]);
               }}
+              label="Quan 5"
             />
             {/* <Marker key="Quan 6" position={{ lat: 21.028511, lng: 105.8048173 }} /> */}
             <Marker
@@ -117,6 +125,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan 7", "Ho Chi Minh"]);
               }}
+              label="Quan 7"
             />
             <Marker
               key="Quan 8"
@@ -124,6 +133,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan 8", "Ho Chi Minh"]);
               }}
+              label="Quan 8"
             />
             {/* <Marker key="Quan 10" position={{ lat: 21.028511, lng: 105.8048173 }} /> */}
             {/* <Marker key="Quan 11" position={{ lat: 21.028511, lng: 105.8048173 }} /> */}
@@ -133,6 +143,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan 12", "Ho Chi Minh"]);
               }}
+              label="Quan 12"
             />
             <Marker
               key="Quan Binh Thanh"
@@ -140,6 +151,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan Binh Thanh", "Ho Chi Minh"]);
               }}
+              label="Quan Binh Thanh"
             />
             <Marker
               key="Quan Binh Tan"
@@ -147,6 +159,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan Binh Tan", "Ho Chi Minh"]);
               }}
+              label="Quan Binh Tan"
             />
             <Marker
               key="Quan Go Vap"
@@ -154,6 +167,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan Go Vap", "Ho Chi Minh"]);
               }}
+              label="Quan Go Vap"
             />
             <Marker
               key="Quan Phu Nhuan"
@@ -161,6 +175,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan Phu Nhuan", "Ho Chi Minh"]);
               }}
+              label="Quan Phu Nhuan"
             />
             <Marker
               key="Quan Tan Binh"
@@ -168,6 +183,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan Tan Binh", "Ho Chi Minh"]);
               }}
+              label="Quan Tan Binh"
             />
             <Marker
               key="Quan Tan Phu"
@@ -175,6 +191,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Quan Tan Phu", "Ho Chi Minh"]);
               }}
+              label="Quan Tan Phu"
             />
             <Marker
               key="Huyen Binh Chanh"
@@ -182,6 +199,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
               onClick={(e) => {
                 props.onClick(["Huyen Binh Chanh", "Ho Chi Minh"]);
               }}
+              label="Huyen Binh Chanh"
             />
           </div>
         ) : (
@@ -200,6 +218,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
                     lng: items[2],
                   }}
                   // required
+                  label={items[0]}
                 />
               );
             })}
