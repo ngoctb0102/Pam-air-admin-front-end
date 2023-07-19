@@ -53,7 +53,11 @@ export default function Management() {
       setLoadingOrNot(false);
     };
     if (nameLocationState[0] != "") {
-      getAPI();
+      try {
+        getAPI();
+      } catch (error) {
+        alert("Khu vuc hien tai khong co du lieu");
+      }
     }
   }, [nameLocationState]);
   useEffect(() => {

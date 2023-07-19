@@ -77,6 +77,7 @@ const Map: React.ForwardRefRenderFunction<MapHandle, MapProps> = (
                     lng: items[1],
                   }}
                   // required
+                  title={items[0] + ", Ha Noi"}
                 />
               );
             })}
