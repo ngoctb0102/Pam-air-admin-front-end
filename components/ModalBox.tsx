@@ -1,5 +1,5 @@
 import styleModal from "../public/style/modal.module.css";
-import React, { useRef, useImperativeHandle } from "react";
+import React, { useRef, useImperativeHandle, useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 type ModalProps = {
   Location: string;
@@ -260,6 +260,7 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
       LastUpdateMonth = "Dec";
       break;
   }
+
   const modal = useRef<HTMLInputElement>();
   const closeOnClick = (e) => {
     modal.current.style.display = "none";
@@ -296,7 +297,7 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
                     {selectModelMenu()}
                   </div>
                   <div className={styleModal.tableContainer}>
-                    {props.cityMode === "daily"
+                    {props.cityMode === "Daily"
                       ? table2(props.data)
                       : table3(props.data)}
                   </div>

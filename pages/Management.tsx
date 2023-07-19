@@ -108,7 +108,7 @@ export default function Management() {
         <Map
           onClick={async (e) => {
             await setNameLocationState(e);
-
+            console.log(cityMode);
             modalRef.current.displayOnClick();
           }}
           cityMode={cityMode}
