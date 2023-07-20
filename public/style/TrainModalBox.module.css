@@ -1,0 +1,27 @@
+.inputTrain {
+  margin-bottom: 15px;
+  width: 215px;
+}
+.TrainContainer h2 {
+  display: flex;
+  justify-content: center;
+}
+.TrainContainer h5 {
+  margin: 0;
+}
+.trainTime {
+  height: 5px;
+  width: 250px;
+}
+.TrainButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 5px;
+  width: 100px;
+  height: 50px;
+  border: 1px solid black;
+  font-weight: 700;
+  cursor: pointer;
+}

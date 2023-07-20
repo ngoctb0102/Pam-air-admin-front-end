@@ -1,45 +1,48 @@
-export const NormalModalBox = (
-  styleModal,
-  props,
-  table,
-  table2,
-  table3,
-  selectModelMenu,
-  LastUpdateMonth,
-  closeOnClick
-) => {
+type NormalModalProps = {
+  styleModal: any;
+  props: any;
+  table: any;
+  table2: any;
+  table3: any;
+  selectModelMenu: any;
+  LastUpdateMonth: any;
+  closeOnClick: any;
+  onClick: () => void;
+};
+const NormalModalBox = (props: NormalModalProps) => {
   return (
     <div>
-      <p className={styleModal.formCell}>{props.Location}</p>
-      <div className={styleModal.formCell}>
+      <p className={props.styleModal.formCell}>{props.props.Location}</p>
+      <div className={props.styleModal.formCell}>
         <p>Data</p>
         <p>Missing Value</p>
-        <div className={styleModal.tableContainer}>
-          {table(props.data, styleModal)}
+        <div className={props.styleModal.tableContainer}>
+          {props.table(props.props.data, props.styleModal)}
         </div>
       </div>
       <div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <p>Model</p>
-          {selectModelMenu()}
+          {props.selectModelMenu()}
         </div>
-        <div className={styleModal.tableContainer}>
-          {props.cityMode === "Hourly"
-            ? table2(props.data, styleModal)
-            : table3(props.data, styleModal)}
+        <div className={props.styleModal.tableContainer}>
+          {props.props.cityMode === "Hourly"
+            ? props.table2(props.props.data, props.styleModal)
+            : props.table3(props.props.data, props.styleModal)}
         </div>
       </div>
-      <p>Last updated: {LastUpdateMonth} 1</p>
+      <p>Last updated: {props.LastUpdateMonth} 1</p>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <button
-          onClick={closeOnClick}
-          className={styleModal.formButton}
+          onClick={props.closeOnClick}
+          className={props.styleModal.formButton}
           style={{ color: "black", backgroundColor: "white" }}
         >
           Cancel
         </button>
         <button
-          className={styleModal.formButton}
+          onClick={props.onClick}
+          className={props.styleModal.formButton}
           style={{ color: "white", backgroundColor: "black" }}
         >
           Train Model
@@ -48,3 +51,4 @@ export const NormalModalBox = (
     </div>
   );
 };
+export default NormalModalBox;
