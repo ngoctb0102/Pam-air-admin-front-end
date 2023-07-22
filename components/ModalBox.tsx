@@ -2,7 +2,8 @@ import styleModal from "../public/style/modal.module.css";
 import React, { useRef, useImperativeHandle, useState, useEffect } from "react";
 import ReactLoading from "react-loading";
 import { table, table2, table3 } from "../lib/Table";
-import { NormalModalBox } from "./NormalModalBox";
+import NormalModalBox from "./NormalModalBox";
+import TrainModalBox from "./TrainModalBox";
 type ModalProps = {
   Location: string;
   loadingOrNot: boolean;
@@ -31,6 +32,7 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
   props: ModalProps,
   forwardedRef
 ) => {
+  const [modalState, setModalState] = useState("Normal");
   const LastUpdate = new Date();
   let LastUpdateMonth;
   switch (LastUpdate.getMonth()) {
@@ -92,15 +94,23 @@ const ModalBox: React.ForwardRefRenderFunction<ModalHandle, ModalProps> = (
           >
             {props.loadingOrNot === false ? (
               <div>
-                {NormalModalBox(
-                  styleModal,
-                  props,
-                  table,
-                  table2,
-                  table3,
-                  selectModelMenu,
-                  LastUpdateMonth,
-                  closeOnClick
+                {modalState === "Normal" ? (
+                  <NormalModalBox
+                    styleModal={styleModal}
+                    props={props}
+                    table={table}
+                    table2={table2}
+                    table3={table3}
+                    selectModelMenu={selectModelMenu}
+                    LastUpdateMonth={LastUpdateMonth}
+                    closeOnClick={closeOnClick}
+                    onClick={() => setModalState("Train")}
+                  />
+                ) : (
+                  <TrainModalBox
+                    onClick={() => setModalState("Normal")}
+                    closeOnClick={closeOnClick}
+                  />
                 )}
               </div>
             ) : (
