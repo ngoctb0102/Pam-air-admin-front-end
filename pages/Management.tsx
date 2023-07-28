@@ -40,24 +40,28 @@ export default function Management() {
     console.log(nameLocationState);
     setLoadingOrNot(true);
     const getAPI = async () => {
-      const res = await fetch("http://202.191.58.206/pamair/info", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          district: nameLocationState[0],
-          city: nameLocationState[1],
-        }),
-      });
-      const data = await res.json();
-      setDataTable(data);
-      setLoadingOrNot(false);
-    };
-    if (nameLocationState[0] != "") {
       try {
-        getAPI();
+        const res = await fetch("http://202.191.58.206/pamair/info", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            district: nameLocationState[0],
+            city: nameLocationState[1],
+          }),
+        }).then((response) => {
+          console.log(response.status);
+          if (!response.ok) throw new Error(`${response.status}`);
+          else return response;
+        });
+        const data = await res.json();
+        setDataTable(data);
+        setLoadingOrNot(false);
       } catch (error) {
         alert("Khu vuc hien tai khong co du lieu");
       }
+    };
+    if (nameLocationState[0] != "") {
+      getAPI();
     }
   }, [nameLocationState]);
   useEffect(() => {
