@@ -235,6 +235,8 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           display: "flex",
           justifyContent: "center",
           width: "100%",
+          position: "sticky",
+          top: "0",
         }}
       >
         <h2>{ListState}</h2>
@@ -248,9 +250,12 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           borderRadius: "5px",
           padding: "0px",
           position: "sticky",
-          top: "0",
+          top: "72px",
           backgroundColor: "black",
           color: "beige",
+          textOverflow: "ellipsis",
+          whiteSpace: "normal",
+          overflow: "hidden",
         }}
       >
         <h4
@@ -263,6 +268,7 @@ function LocationList(props: { onClick: (e) => void }, ref) {
             border: "2px solid beige",
             margin: "0px",
             cursor: "pointer",
+            
           }}
         >
           Ma Tram
@@ -321,14 +327,18 @@ function LocationList(props: { onClick: (e) => void }, ref) {
             cursor: "pointer",
           }}
         >
-          Lng
+          Lon
         </h4>
       </div>
 
       {ListState === "Ha Noi"
         ? ListLocationCard(HaNoiLocationList)
         : ListLocationCard(HoChiMinhLocationList)}
-      <div style={{ display: "none" }} ref={addingCardRef}>
+      <div 
+      style={{ 
+        display: "none" ,
+      }} 
+      ref={addingCardRef}>
         {LocationCard(
           1,
           <input
