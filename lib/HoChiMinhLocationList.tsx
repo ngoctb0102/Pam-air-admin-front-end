@@ -55,6 +55,7 @@ export const HoChiMinhLocationList: Array<any> = [
   ["S0000853", "Phong 22- TH An Lac 2", "Quan Binh Tan", 106.620835, 10.753771],
   ["S0000854", "Phong 23- TH An Lac 2", "Quan Binh Tan", 106.620724, 10.753739],
   ["S0000855", "Phong 24- TH An Lac 2", "Quan Binh Tan", 106.620732, 10.753876],
+  ["S0000873", "Phong 23- TH An Lac 2", "Quan Binh Tan", 106.620724, 10.753739],
   ["S0000772", "Le Van Quoi", "Quan Binh Tan", 106.6075734, 10.7767665],
   ["S0000250", "Duong so 1", "Quan Binh Tan", 106.612541, 10.748238],
   [
