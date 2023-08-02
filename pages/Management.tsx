@@ -8,6 +8,7 @@ import LocationList from "../components/LocationList";
 import { HaNoiDistrict } from "../lib/HaNoiDistrict";
 import { HoChiMinhDistrict } from "../lib/HoChiMinhDistrict";
 import { VietNamLocationList } from "../lib/VietNamLocationList";
+import ManagementStyle from "../public/style/Managament.module.css";
 const searchArray = (array, result) => {
   for (let i = 0; i < array.length; i++) {
     if (array[i].includes(result)) {
@@ -98,15 +99,7 @@ export default function Management() {
         }}
         ref={dropDownMenuRef}
       />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          width: "100%",
-          padding: "30px",
-        }}
-      >
+      <div className={ManagementStyle.LocationListContainer}>
         <LocationList
           onClick={async (e) => {
             await setInputState(e.currentTarget.className);

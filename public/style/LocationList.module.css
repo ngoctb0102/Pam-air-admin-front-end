@@ -14,3 +14,8 @@
   background-color: black;
   color: white;
 }
+@media only screen and (max-width: 1050px) {
+  .LocationList {
+    display: none;
+  }
+}

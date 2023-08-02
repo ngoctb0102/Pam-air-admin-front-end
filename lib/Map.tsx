@@ -20,7 +20,7 @@ import MarkerListHaNoi from "./MarkerListHanoi";
 import MarkerListHoChiMinh from "./MarkerListHoChiMinh";
 import { VietNamLocationList } from "./VietNamLocationList";
 const containerStyle = {
-  width: "800px",
+  width: "40vw",
   height: "500px",
   overFlow: "visible",
 };

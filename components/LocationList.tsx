@@ -112,7 +112,7 @@ function LocationList(props: { onClick: (e) => void }, ref) {
               justifyContent: "center",
               alignItems: "center",
               height: "75px",
-              width: "93px",
+              width: "120px",
               border: "2px solid beige",
               margin: "0px",
               cursor: "pointer",
@@ -125,7 +125,7 @@ function LocationList(props: { onClick: (e) => void }, ref) {
               display: "flex",
               alignItems: "center",
               height: "75px",
-              width: "150px",
+              width: "200px",
               border: "2px solid beige",
               margin: "0px",
               cursor: "pointer",
@@ -176,6 +176,18 @@ function LocationList(props: { onClick: (e) => void }, ref) {
           >
             Lng
           </h4>
+          <h4
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "75px",
+              width: "150px",
+              border: "2px solid beige",
+              margin: "0px",
+              cursor: "pointer",
+            }}
+          ></h4>
         </div>
       </div>
 
